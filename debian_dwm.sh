@@ -1,12 +1,23 @@
-#!/bin/bash
-# dwm for dummies
+#!/bin/sh
+# debian dwm for dummies (like me)
 # auto configure and install dwm on a minimal debian machine
 
-# apt install all "essential" packages
-echo "dwm-for-dummies"
+echo "
+************************************
+MAKE SURE TO RUN THIS SCRIPT AS SUDO
+************************************
+"
+
+# apt install all essential packages
 sudo apt update; sudo apt install vim git build-essential wget curl alsa-utils acpi wicd-curses xinit libx11-dev libxft-dev libxinerama-dev xclip xvkbd xinput xbacklight feh figlet
 
 #wget all packages
+if [ -d "packages" ]
+then
+    sudo rm -rf packages
+fi
+mkdir packages
+cd packages
 wget https://dl.suckless.org/dwm/dwm-6.2.tar.gz
 wget https://dl.suckless.org/st/st-0.8.1.tar.gz
 wget https://dl.suckless.org/tools/dmenu-4.9.tar.gz
@@ -15,8 +26,9 @@ wget https://dl.suckless.org/tools/dmenu-4.9.tar.gz
 tar -xvf dwm*
 cd dwm-6.2
 make
-# change modkey from alt to windows key
-sed -i 's,#define MODKEY Mod1Mask,#define MODKEY Mod4Mask,g' config.h
+
+patch config.h -i ../../*.patch
+
 sudo make install
 cd ..
 
@@ -34,22 +46,18 @@ make
 sudo make install
 cd ..
 
-# update xorg.conf for backlight settings
-sudo cp xorg.conf /etc/X11/xorg.conf
+# cleaning up the mess
+sudo rm -rf *.tar.gz
+cd ..
+
+# update xorg.conf.d for backlight and mouse functionality
+sudo cp -r xorg.conf.d /etc/X11
 
 # populate dotiles
 echo "
 Setting up $USER's dotfiles in $HOME"
-
-cp .xinitrc ~/
-cp .vimrc ~/
-cp .bash_aliases ~/
-cp .bash_functions ~/
-
-"if [ -f ~/.bash_functions ]; then
-    . ~/.bash_functions
-fi > > ~/.bashrc" >> ~/.bashrc
+cp dotfiles/.* $HOME
 
 # done!
-figlet DONE!
+figlet done!
 echo "type 'startx' to enter dwm environment"
