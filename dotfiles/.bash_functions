@@ -2,7 +2,7 @@
 # For example, `a 50` sets volume to 50%
 function a()
 {
-    amixer set Master "$1"%
+    amixer set Master "$1"% > /dev/null
 }
 
 # Set brightness

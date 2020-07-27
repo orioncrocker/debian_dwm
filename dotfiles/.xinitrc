@@ -1,7 +1,4 @@
-# tap to click mouse functionality
-xinput set-prop 10 288 1
-
-# status bar
+# start dwm status bar
 while true
 do
     TIME=$(date +"%A %b %d %R")
@@ -9,6 +6,9 @@ do
     xsetroot -name " [ $BAT ] [ $TIME ] "
     sleep 60s
 done &
+
+# set background image
+feh --bg-scale ~/images/wallpaper.*
 
 # start dwm
 exec dwm
