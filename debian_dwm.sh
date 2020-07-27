@@ -9,7 +9,7 @@ MAKE SURE TO RUN THIS SCRIPT AS SUDO
 "
 
 # apt install all essential packages
-sudo apt update; sudo apt install vim git build-essential wget curl alsa-utils acpi wicd-curses xinit libx11-dev libxft-dev libxinerama-dev xclip xvkbd xinput xbacklight feh figlet
+sudo apt install build-essential wget curl alsa-utils acpi wicd-curses xinit libx11-dev libxft-dev libxinerama-dev xclip xvkbd xinput xbacklight feh figlet
 
 #wget all packages
 if [ -d "packages" ]
@@ -48,7 +48,7 @@ cd ..
 
 # cleaning up the mess
 sudo rm -rf *.tar.gz
-cd ..
+cd ../..
 
 # update xorg.conf.d for backlight and mouse functionality
 sudo cp -r xorg.conf.d /etc/X11
@@ -56,7 +56,8 @@ sudo cp -r xorg.conf.d /etc/X11
 # populate dotiles
 echo "
 Setting up $USER's dotfiles in $HOME"
-cp dotfiles/.* $HOME
+cp -rT dotfiles $HOME
+cp -r images $HOME
 
 # done!
 figlet done!
