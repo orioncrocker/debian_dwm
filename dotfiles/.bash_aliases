@@ -1,5 +1,5 @@
 alias apt='sudo apt'
-alias reboot='sudo systemctl reboot'
-alias poweroff='sudo systemctl poweroff'
+alias reboot='systemctl reboot'
+alias poweroff='systemctl poweroff'
 alias bt='bluetoothctl'
 alias wifi='wicd-curses'
