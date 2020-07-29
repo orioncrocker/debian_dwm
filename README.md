@@ -43,8 +43,12 @@ It should look something like this.
 
 Now comes the fun part, figuring out how everything works.
 I won't go into any great detail here, purely because there are plenty of other sites that have done
-a far better job than I ever will at explaining how this thing works.
-One of the best guides out there is [Dave's Visual Guide to dwm](https://ratfactor.com/dwm).
+a far better job at explaining dwm than I ever will be able to convey in this readme.
+So far the best guide I've found out there is [Dave's Visual Guide to dwm](https://ratfactor.com/dwm).
 
 It will take some getting used to, and it might not be worth it.
-The only reason I use this window manager is because it helps squeeze a couple extra hours out of my old Acer Aspire One laptop.
+Best of luck.
+
+I honestly only use this window manager because it helps squeeze a couple extra hours out of my old Acer Aspire One laptop.
+If you are in a similar situation as me and stuck with older hardware, this might be a decent window manager to try out.
+Who knows, you might even grow to like it.
