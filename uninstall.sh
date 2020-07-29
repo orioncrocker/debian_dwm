@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [ ! -d "packages" ];
+    then
+    echo "packages directory doesn't exist, can't uninstall"
+    exit
+fi
+
 cd packages
 
 cd dwm-6.2
