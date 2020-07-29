@@ -1,10 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-# check if sudo user
-if [ "$UID" -ne 0 ]
-    then echo "please run this script as sudo"
-    exit
-fi
+cd packages
 
 cd dwm-6.2
 sudo make uninstall
@@ -18,6 +14,6 @@ cd dmenu-4.9
 sudo make uninstall
 cd ..
 
-rm -rf dwm*
-rm -rf dmenu*
-rm -rf st*
+sudo rm -rf dwm*s
+sudo rm -rf dmenu*
+sudo rm -rf st*
