@@ -1,15 +1,14 @@
-#!/bin/sh
+#!/bin/bash
 # debian dwm for dummies (like me)
 # auto configure and install dwm on a minimal debian machine
 
-echo "
-************************************
-MAKE SURE TO RUN THIS SCRIPT AS SUDO
-************************************
-"
+if [ ! "$EUID" -ne 0 ]
+    then echo "please don't run this script as root"
+    exit
+fi
 
 # apt install all essential packages
-sudo apt install build-essential wget curl alsa-utils acpi wicd-curses xinit libx11-dev libxft-dev libxinerama-dev xclip xvkbd xinput xbacklight feh figlet
+sudo apt install -y rsync acpi build-essential wget curl alsa-utils wicd-curses xinit libx11-dev libxft-dev libxinerama-dev xclip xvkbd feh figlet
 
 #wget all packages
 if [ -d "packages" ]
@@ -26,9 +25,6 @@ wget https://dl.suckless.org/tools/dmenu-4.9.tar.gz
 tar -xvf dwm*
 cd dwm-6.2
 make
-
-patch config.h -i ../../*.patch
-
 sudo make install
 cd ..
 
@@ -48,16 +44,23 @@ cd ..
 
 # cleaning up the mess
 sudo rm -rf *.tar.gz
-cd ../..
+cd ..
 
 # update xorg.conf.d for backlight and mouse functionality
-sudo cp -r xorg.conf.d /etc/X11
+echo ""
+if [ "$(acpi)" == "" ];
+    then echo "no battery detected, skipping step"
+    else echo "battery detected, copying xorg files to /etc/X11"
+    sudo apt install xinput xbacklight
+    sudo rsync -r xorg.conf.d /etc/X11
+    exit
+fi
 
 # populate dotiles
 echo "
 Setting up $USER's dotfiles in $HOME"
-cp -rT dotfiles $HOME
-cp -r images $HOME
+rsync -r dotfiles/ ~/
+rsync -r images ~/
 
 # done!
 figlet done!
