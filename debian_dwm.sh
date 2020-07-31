@@ -17,9 +17,9 @@ then
 fi
 mkdir packages
 cd packages
-sudo wget https://dl.suckless.org/dwm/dwm-6.2.sudo tar.gz
-sudo wget https://dl.suckless.org/st/st-0.8.1.sudo tar.gz
-sudo wget https://dl.suckless.org/tools/dmenu-4.9.sudo tar.gz
+sudo wget https://dl.suckless.org/dwm/dwm-6.2.tar.gz
+sudo wget https://dl.suckless.org/st/st-0.8.1.tar.gz
+sudo wget https://dl.suckless.org/tools/dmenu-4.9.tar.gz
 
 # install dwm
 sudo tar -xvf dwm*
@@ -64,4 +64,4 @@ rsync -r images ~/
 
 # done!
 figlet done!
-echo "type 'ssudo tartx' to enter dwm environment"
+echo "type 'startx' to enter dwm environment"
